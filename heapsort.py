@@ -23,8 +23,9 @@ def heapsort(arr):
 def build_min_heap(arr):
     global heap_size
     heap_size = len(arr)
-    for i in range(floor(len(arr) / 2), 0, -1):
+    for i in range(floor(len(arr) / 2), -1, -1):
         arr = min_heapify(arr, i)
+    print(arr)
     return arr
 
 def min_heapify(arr, i):
@@ -43,10 +44,10 @@ def min_heapify(arr, i):
     return arr
 
 def left(n):
-    return 2 * n
+    return 2 * n + 1
 
 def right(n):
-    return (2 * n) + 1
+    return (2 * n) + 2
 
 def exchange(arr, i, j):
     tmp = arr[j]
