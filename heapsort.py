@@ -5,16 +5,23 @@
 # Heapsort
 
 from math import floor
+import sys
 import random
-heap_size = 0
-test_array_length = 10
-test_array_lower = 1
-test_array_upper = 100
 
-def heapsort(arr):
+heap_size = 0
+test_array_lower = 1
+test_array_upper = sys.maxsize
+
+def generate_input(n):
+    arr = []
+    for i in range(n):
+        arr.append(random.randint(test_array_lower, test_array_upper))
+    return arr
+
+def sort(arr):
     global heap_size
     arr = build_min_heap(arr)
-    for i in range(len(arr) - 1, 1, -1):
+    for i in range(len(arr) - 1, 0, -1):
         arr = exchange(arr, 0, i)
         heap_size -= 1
         arr = min_heapify(arr, 0)
@@ -25,7 +32,6 @@ def build_min_heap(arr):
     heap_size = len(arr)
     for i in range(floor(len(arr) / 2), -1, -1):
         arr = min_heapify(arr, i)
-    print(arr)
     return arr
 
 def min_heapify(arr, i):
@@ -55,9 +61,48 @@ def exchange(arr, i, j):
     arr[i] = tmp
     return arr
 
-if __name__ == "__main__":
+def check_output(A):
     arr = []
-    for i in range(test_array_length):
-        arr.append(random.randint(test_array_lower, test_array_upper))
-    print(arr)
-    print(heapsort(arr))
+    isSorted = True
+
+    if len(A) <= 1:
+        return True
+
+    arr.append(A[0])
+              
+    for i in range (1, 5):
+        if i < len(A):
+            arr.append(A[i])
+        if not A[i-1] >= A[i]:
+            isSorted = False
+
+    print("First 5 elements: {}".format(arr))
+
+    arr = []
+    arr.append(A[-1])
+    
+    for i in range (-2, -6, -1):
+        if abs(i) < len(A) + 1:
+            arr.insert(0, A[i])
+        if not A[i] >= A[i+1]:
+            isSorted = False
+
+    print("Last 5 elements: {}".format(arr))
+
+    if isSorted:
+        print("The array is sorted.")
+    else:
+        print("The array is NOT sorted.")
+
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Invalid amount of arguments")
+        exit()
+    arr = generate_input(int(sys.argv[1]))
+    check_output(arr)   
+    print("\n =====SORTING THE ARRAY====== \n")
+    arr = sort(arr)
+    check_output(arr)
+    
