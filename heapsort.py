@@ -40,7 +40,7 @@ def sort(arr):
 def build_min_heap(arr):
     global heap_size
     heap_size = len(arr)
-    for i in range(floor(len(arr) / 2), -1, -1):
+    for i in range(int(floor(len(arr)) / 2), -1, -1):
         arr = min_heapify(arr, i)
     return arr
 
@@ -116,7 +116,7 @@ if __name__ == "__main__":
         print("Invalid amount of arguments")
         exit()
     
-    n = floor(float(sys.argv[1]))
+    n = int(floor(float(sys.argv[1])))
     if n < 1:
         print("n needs to be greater than 0")
         exit()

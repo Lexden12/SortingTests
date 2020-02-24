@@ -100,7 +100,7 @@ if __name__ == "__main__":
         print("Invalid amount of arguments")
         exit()
     
-    n = floor(float(sys.argv[1]))
+    n = int(floor(float(sys.argv[1])))
     if n < 1:
         print("n needs to be greater than 0")
         exit()
