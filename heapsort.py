@@ -66,6 +66,7 @@ def check_output(A):
     isSorted = True
 
     if len(A) <= 1:
+        print("The array is already sorted: {}".format(A))
         return True
 
     arr.append(A[0])
@@ -73,8 +74,8 @@ def check_output(A):
     for i in range (1, 5):
         if i < len(A):
             arr.append(A[i])
-        if not A[i-1] >= A[i]:
-            isSorted = False
+            if not A[i-1] >= A[i]:
+                isSorted = False
 
     print("First 5 elements: {}".format(arr))
 
@@ -84,8 +85,8 @@ def check_output(A):
     for i in range (-2, -6, -1):
         if abs(i) < len(A) + 1:
             arr.insert(0, A[i])
-        if not A[i] >= A[i+1]:
-            isSorted = False
+            if not A[i] >= A[i+1]:
+                isSorted = False
 
     print("Last 5 elements: {}".format(arr))
 
@@ -100,7 +101,13 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Invalid amount of arguments")
         exit()
-    arr = generate_input(int(sys.argv[1]))
+    
+    n = floor(float(sys.argv[1]))
+    if n < 1:
+        print("n needs to be greater than 0")
+        exit()
+    
+    arr = generate_input(n)
     check_output(arr)   
     print("\n =====SORTING THE ARRAY====== \n")
     arr = sort(arr)
