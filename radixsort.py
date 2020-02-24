@@ -106,8 +106,8 @@ if __name__ == "__main__":
         exit()
         
     arr = generate_input(n)
-    check_output(arr)   
-    print("\n =====SORTING THE ARRAY====== \n")
+    #check_output(arr)   
+    #print("\n =====SORTING THE ARRAY====== \n")
     arr = sort(arr)
-    check_output(arr)
+    #check_output(arr)
     
