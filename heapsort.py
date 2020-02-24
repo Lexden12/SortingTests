@@ -8,16 +8,25 @@ from math import floor
 import sys
 import random
 
+# because the array in sorted in place,
+# we virtually adjust the array size to rebuild the heap
 heap_size = 0
+
+# the range for the random numbers to generate
 test_array_lower = 1
 test_array_upper = sys.maxsize
 
+# returns an array with n random ints
 def generate_input(n):
     arr = []
     for i in range(n):
         arr.append(random.randint(test_array_lower, test_array_upper))
     return arr
 
+# an implementation of heapsort
+# 1. build the heap
+# 2. extract the smallest value from the heap
+# 3. heapify with one less element
 def sort(arr):
     global heap_size
     arr = build_min_heap(arr)
@@ -27,6 +36,7 @@ def sort(arr):
         arr = min_heapify(arr, 0)
     return arr
 
+# constructs a heap across the array
 def build_min_heap(arr):
     global heap_size
     heap_size = len(arr)
@@ -34,6 +44,7 @@ def build_min_heap(arr):
         arr = min_heapify(arr, i)
     return arr
 
+# recursively pulls the larger value down 
 def min_heapify(arr, i):
     l = left(i)
     r = right(i)
@@ -61,6 +72,7 @@ def exchange(arr, i, j):
     arr[i] = tmp
     return arr
 
+# verifies that the array is sorted
 def check_output(A):
     arr = []
     isSorted = True
@@ -96,7 +108,9 @@ def check_output(A):
         print("The array is NOT sorted.")
 
 
-
+# 1. confirm that only n is passed as an argument, and n is valid
+# 2. generate an array to sort
+# 3. sort the array and test that the array is sorted
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Invalid amount of arguments")

@@ -8,6 +8,7 @@ from math import floor
 import sys
 import random
 
+# the range for random numbers to generate
 test_array_lower = 1
 test_array_upper = sys.maxsize
 
@@ -18,7 +19,10 @@ def generate_input(n):
         arr.append(random.randint(test_array_lower, test_array_upper))
     return arr
 
-# an implementation of radixsort
+# an implementation of radixsort:
+# 1. find the maximum value in the array to determine the maximum
+#       amount of digits to sort
+# 2. sort the array from 1 to d digits, based on the d'th digit
 def sort(arr):
     max_int = max(arr)
     digits = len(str(max_int))
@@ -29,6 +33,10 @@ def sort(arr):
     return arr
 
 # sorts an array localized on a digit d
+# 1. create 10 buckets since a digit is base 10
+# 2. place the array elements into the buckets,
+#       based on its value at digit decode
+# 3. concat the buckets together
 def stable_sort(d, arr):
     buckets = [ [] for i in range(10) ]
     
@@ -48,7 +56,7 @@ def stable_sort(d, arr):
         
     return arr       
 
-# prints the first 5 and last 
+# verifies that the array is sorted
 def check_output(A):
     arr = []
     isSorted = True
@@ -84,7 +92,9 @@ def check_output(A):
         print("The array is NOT sorted.")
 
 
-
+# 1. confirm that only n is passed as an argument, and n is valid
+# 2. generate an array to sort
+# 3. sort the array and test that the array is sorted
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Invalid amount of arguments")
